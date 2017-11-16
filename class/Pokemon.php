@@ -81,8 +81,8 @@ class Pokemon
     {
         if($choix_attaque == 1){
             return $this->attaque1->get_valeur();
-            
         }elseif($choix_attaque == 2){
+            
             return $this->attaque2->get_valeur();
 
         }
@@ -121,8 +121,14 @@ class Pokemon
 
     public function subit_degat($dommage_subit)
     {
-        if($this->vie > 0){
-            $dmg = $dommage_subit - $this->def;
+        if($this->vie > 0)
+        {
+            if ($dommage_subit > $this->def)
+            {
+                $dmg = $dommage_subit - $this->def;
+            }else {
+                $dmg = 0;
+            }
             $this->vie = $this->vie - $dmg;
             echo $this->nom." à subit ".$dmg." points de dommage, il reste : ".$this->vie." points de vie.<br>";
             if($this->vie <= 0 || $this->vie === "mort"){
